@@ -3,6 +3,7 @@ package main
 import (
 	"errors"
 	"fmt"
+	"os"
 	"sync"
 	"time"
 )
@@ -110,6 +111,7 @@ func main() {
 
 	var row, col, row2, col2 int
 	var p float64
+	var inp string
 
 	for true {
 
@@ -126,28 +128,35 @@ func main() {
 
 		mat1, mat2, answ, err := maker(row, col, row2, col2, p)
 		if err != nil {
+			fmt.Println("Error")
+			os.Exit(3)
+		}
+		fmt.Println("NORMAL MULTIPLY")
+		start := time.Now()
+		answ.mat = mat1.multiply(mat2)
+		t := time.Now()
+		elapsed := t.Sub(start)
+		fmt.Printf("Time Elapsed Normal: %v\n", elapsed)
 
-			fmt.Println("NORMAL MULTIPLY")
-			start := time.Now()
-			answ.mat = mat1.multiply(mat2)
-			t := time.Now()
-			elapsed := t.Sub(start)
-			fmt.Printf("Time Elapsed Normal: %v\n", elapsed)
+		if row < 10 && col < 10 {
+			answ.print()
+		}
 
-			if row < 10 && col < 10 {
-				answ.print()
-			}
+		fmt.Println("PARALLEL MULTIPLY")
+		start = time.Now()
+		answ.mat = mat1.pmultiply(mat2)
+		t = time.Now()
+		elapsed = t.Sub(start)
+		fmt.Printf("Time Elapsed Normal: %v\n", elapsed)
 
-			fmt.Println("PARALLEL MULTIPLY")
-			start = time.Now()
-			answ.mat = mat1.pmultiply(mat2)
-			t = time.Now()
-			elapsed = t.Sub(start)
-			fmt.Printf("Time Elapsed Normal: %v\n", elapsed)
+		if row < 10 && col < 10 {
+			answ.print()
+		}
 
-			if row < 10 && col < 10 {
-				answ.print()
-			}
+		fmt.Printf("Enter New Matrix? Y/n: ")
+		fmt.Scan(&inp)
+		if inp == "n" {
+			os.Exit(1)
 		}
 
 	}
