@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Version4 {
+class Project2 {
     
     public static class Matrix extends Thread {
         
