@@ -32,7 +32,7 @@ func (m *matrix) newMatrix(r int, c int) {
 
 //method value receiver
 func (m matrix) print() {
-
+	fmt.Println("")
 	for i := range m.mat {
 		fmt.Println(m.mat[i])
 	}
@@ -128,10 +128,11 @@ func main() {
 
 		mat1, mat2, answ, err := maker(row, col, row2, col2, p)
 		if err != nil {
-			fmt.Println("Error")
+
+			fmt.Println(err)
 			os.Exit(3)
 		}
-		fmt.Println("NORMAL MULTIPLY")
+		fmt.Println("Normal Multiply")
 		start := time.Now()
 		answ.mat = mat1.multiply(mat2)
 		t := time.Now()
@@ -142,7 +143,7 @@ func main() {
 			answ.print()
 		}
 
-		fmt.Println("PARALLEL MULTIPLY")
+		fmt.Println("Multithread Multiply")
 		start = time.Now()
 		answ.mat = mat1.pmultiply(mat2)
 		t = time.Now()
