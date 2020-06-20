@@ -127,7 +127,7 @@ class Project2 {
             mat1 = matArr[0];
             mat2 = matArr[1]; 
             answ = matArr[2];
-            System.out.println("Normal Multiply");
+            System.out.println("\nNormal Multiply");
             long start = System.currentTimeMillis();
             answ = mat1.mul(mat2);
             long end =System.currentTimeMillis();

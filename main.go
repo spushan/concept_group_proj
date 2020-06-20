@@ -132,7 +132,7 @@ func main() {
 			fmt.Println(err)
 			os.Exit(3)
 		}
-		fmt.Println("Normal Multiply")
+		fmt.Println("\nNormal Multiply")
 		start := time.Now()
 		answ.mat = mat1.multiply(mat2)
 		t := time.Now()
